@@ -4,12 +4,12 @@ Spring Security Multi-Authentication-Manager Test
 _A little background..._
 
 I was involved with two separate projects that both required the rare feature of providing two entirely distinct
-authentication providers for a single web application.
+authentication managers for a single web application.
 
-One authentication provider handled authenticating admin users against an LDAP server.  The admin users would log into
+One authentication manager handled authenticating admin users against an LDAP server.  The admin users would log into
 the web application through a standard, secured HTML login page.
 
-The other authentication provider handled authenticating web service consumers.  In one project the consumers consumed
+The other authentication manager handled authenticating web service consumers.  In one project the consumers consumed
 Hessian services while the other project provided REST services for consumption.  In both projects, the application
 itself held the authentication information, stored in the database.
 
