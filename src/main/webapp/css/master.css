@@ -1,0 +1,43 @@
+body {
+    background: #3b0b00 url(/images/monger-bg.png);
+    padding: 0;
+    margin: 0;
+}
+
+body, label, input, select, td {
+    color: #666;
+    font: 12pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+input, textarea {
+    border-radius: 5px;
+    background-color: white;
+    border: solid 1px #ccc;
+    padding: 0.25em;
+}
+
+h1 {
+    color: #3b0b00;
+    text-align: left;
+    font-size: 150%;
+}
+
+a, a:active, a:visited {
+    color: red;
+    text-decoration: none;
+}
+
+a:hover { text-decoration: underline }
+
+td.label { text-align: right }
+
+#content {
+    width: 980px;
+    background: white;
+    margin: 0 auto;
+    padding: 1.5em;
+    border-radius: 12px;
+    border: solid 1px black;
+    min-height: 400px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 1);
+}

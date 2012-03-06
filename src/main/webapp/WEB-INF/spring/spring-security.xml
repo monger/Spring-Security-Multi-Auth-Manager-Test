@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <!-- ─┤ ☢ HESSIAN SERVICES ☢ ├───────────────────────────────────────────────────────────────────────────────── -->
+    <http pattern="/remoting/**" use-expressions="true" authentication-manager-ref="remotingAuthenticationManager">
+        <intercept-url pattern="/**" access="hasAnyRole('ROLE_LIMITED_REMOTE_USER','ROLE_GODMODE_REMOTE_USER')"/>
+        <anonymous enabled="false"/>
+        <http-basic/>
+    </http>
+
+    <!-- ─┤ ☢ ADMIN WEB INTERFACE ☢ ├────────────────────────────────────────────────────────────────────────────── -->
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/images/**" security="none"/>
+    <http pattern="/js/**" security="none"/>
+    <http pattern="/favicon.ico" security="none"/>
+
+    <http pattern="/**" use-expressions="true" disable-url-rewriting="true" authentication-manager-ref="adminAuthenticationManager">
+        <form-login login-page="/login" authentication-failure-url="/failure"/>
+        <logout logout-url="/logout" logout-success-url="/login"/>
+        <access-denied-handler error-page="/denied"/>
+
+        <intercept-url pattern="/denied" access="permitAll"/>
+        <intercept-url pattern="/failure" access="permitAll"/>
+        <intercept-url pattern="/login" access="permitAll"/>
+        <intercept-url pattern="/**" access="hasAnyRole('ROLE_SUPER_USER','ROLE_ADMIN')"/>
+    </http>
+
+    <!-- ─┤ ☢ AUTHENTICATION MANAGER FOR ADMIN INTERFACE ☢ ├─────────────────────────────────────────────────────── -->
+    <authentication-manager alias="adminAuthenticationManager">
+        <authentication-provider>
+            <user-service>
+                <user name="stanFox" password="stan-password" authorities="ROLE_SUPER_USER"/>
+                <user name="marie" password="marie-password" authorities="ROLE_ADMIN"/>
+                <user name="navin" password="navin-password" authorities="ROLE_LOSER_USER"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+    <!-- ─┤ ☢ AUTHENTICATION MANAGER FOR HESSIAN SERVICES ☢ ├────────────────────────────────────────────────────── -->
+    <authentication-manager alias="remotingAuthenticationManager">
+        <authentication-provider>
+            <user-service>
+                <user name="blair" password="blair-password" authorities="ROLE_LIMITED_REMOTE_USER"/>
+                <user name="clay" password="clay-password" authorities="ROLE_GODMODE_REMOTE_USER"/>
+                <user name="julian" password="julian-password" authorities="ROLE_LOSER_USER"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+
+
+</beans:beans>
