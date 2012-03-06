@@ -15,7 +15,8 @@ itself held the authentication information, stored in the database.
 
 With both projects, the admin HTML interface would only ever be available to admins and never to the consumers of the
 application's services.  Likewise, the service consumers would never have reason to access the admin interface of the
-application.
+application.  With this in mind, _we didn't want to chain Spring authentication providers in a single Spring
+authentication manager_ but rather required two entirely separate and distinct authentication managers.
 
 With the release of Spring Security 3.1 and the introduction of the `authentication-manager-ref` `<http>` attribute, it
 appeared that I would be able to easily implement the sovereign, separate authentication managers described above.
