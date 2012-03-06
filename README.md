@@ -54,7 +54,8 @@ Then, if you modify `spring-security.xml` so that the `adminAuthenticationManage
 `remotingAuthenticationManager`, all of the admin interface integration tests will pass while the `testHessianService`
 test fails.
 
-After you make your changes to `src/main/webapp/WEB-INF/spring/spring-security.xml`, run the following:
+After you make your changes to `src/main/webapp/WEB-INF/spring/spring-security.xml`, run the following (the Cargo
+Maven plugin will download and run Tomcat 7 for the integration tests so make sure port 8080 is free):
 
     mvn integration-test
 
