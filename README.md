@@ -1,6 +1,8 @@
 Spring Security Multi-Authentication-Manager Test
 =================================================
 
+Update: the Jira ticket for this is [SEC-1937](https://jira.springsource.org/browse/SEC-1937).
+
 _A little background..._
 
 I was involved with two separate projects that both required the rare feature of providing two entirely distinct
